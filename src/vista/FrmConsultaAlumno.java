@@ -2,35 +2,32 @@ package vista;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.time.LocalDate;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import entidad.Alumno;
 import model.AlumnoModel;
 import util.ValidateUtil;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyListener;
-import java.time.LocalDate;
-import java.util.List;
-import java.awt.event.KeyEvent;
 
 public class FrmConsultaAlumno extends JFrame implements ActionListener, KeyListener {
 

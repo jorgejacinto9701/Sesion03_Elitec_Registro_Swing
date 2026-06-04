@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -16,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entidad.Alumno;
 import model.AlumnoModel;
+import util.ValidateUtil;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -171,7 +174,24 @@ public class FrmConsultaAlumno extends JFrame implements ActionListener, KeyList
 		
 		
 		//2 Validacion
+		if (!desde.isEmpty()  && desde.matches(ValidateUtil.DATE_YYYY_MM_DD) == false) {
+			JOptionPane.showMessageDialog(this,"La fecha de nacimiento(Desde) no es válida. Tiene que tener el formato YYYY-MM-DD");
+			return;
+		}
+		if (!hasta.isEmpty()  && hasta.matches(ValidateUtil.DATE_YYYY_MM_DD) == false) {
+			JOptionPane.showMessageDialog(this,"La fecha de nacimiento(Hasta) no es válida. Tiene que tener el formato YYYY-MM-DD");
+			return;
+		}
 		
+		//Fecha desde debe ser menor o igual a fecha hasta
+		if (!desde.isEmpty() && !hasta.isEmpty()) {
+			LocalDate fechaDesde = LocalDate.parse(desde);
+			LocalDate fechaHasta = LocalDate.parse(hasta);
+			if (fechaDesde.isAfter(fechaHasta)) {
+				JOptionPane.showMessageDialog(this,"La fecha de nacimiento(Desde) no puede ser mayor a la fecha de nacimiento(Hasta)");
+				return;
+			}
+		}
 		
 		LocalDate fechaDesde = desde.isEmpty()? LocalDate.parse("9999-01-01"): LocalDate.parse(desde);
 		LocalDate fechaHasta = hasta.isEmpty()? LocalDate.parse("9999-01-01"): LocalDate.parse(hasta);

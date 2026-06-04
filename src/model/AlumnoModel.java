@@ -2,6 +2,10 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import entidad.Alumno;
 import util.MySqlDBConexion;
@@ -43,4 +47,71 @@ public class AlumnoModel {
 		return salida;
 	}
 	
+	
+	public List<Alumno> listaAlumno(String nombre, String dni, String correo, LocalDate desde, LocalDate hasta) {
+		ArrayList<Alumno> lista = new ArrayList<Alumno>();
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = MySqlDBConexion.getConexion();
+			String sql = "SELECT * FROM alumno WHERE "
+					+ " nombre LIKE ? AND "
+					+ " ( ? ='' or dni = ? ) AND "
+					+ " ( ? ='' or correo = ? ) AND "
+					+ " ( ? ='9999-01-01' or fechaNacimiento >= ? ) AND "
+					+ " ( ? ='9999-01-01' or fechaNacimiento <= ? ) ";
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, "%" + nombre + "%");
+			pstm.setString(2, dni);
+			pstm.setString(3, dni);
+			pstm.setString(4, correo);
+			pstm.setString(5, correo);
+			pstm.setDate(6, java.sql.Date.valueOf(desde));
+			pstm.setDate(7, java.sql.Date.valueOf(desde));
+			pstm.setDate(8, java.sql.Date.valueOf(hasta));
+			pstm.setDate(9, java.sql.Date.valueOf(hasta));
+			
+			//imprimir el query para verificar que se arma correctamente
+			System.out.println("SQL: " + pstm.toString());
+			
+			//Se ejecuta el query en la base de datos
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				Alumno a = new Alumno();
+				a.setIdAlumno(rs.getInt("idAlumno"));
+				a.setNombre(rs.getString("nombre"));
+				a.setDni(rs.getString("dni"));
+				a.setCorreo(rs.getString("correo"));
+				a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+				lista.add(a);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstm != null)
+					pstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return lista;
+	}
+	
+	
+	
 }
+
+
+
+
+
+

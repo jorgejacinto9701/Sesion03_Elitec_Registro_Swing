@@ -44,6 +44,7 @@ public class FrmConsultaAlumno extends JFrame implements ActionListener, KeyList
 	private JButton btnFiltrar;
 	private JButton btnCancelar;
 
+	
 	/**
 	 * Launch the application.
 	 */

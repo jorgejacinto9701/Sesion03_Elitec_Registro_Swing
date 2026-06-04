@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,10 +11,14 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import entidad.Alumno;
@@ -52,6 +57,7 @@ public class FrmConsultaAlumno extends JFrame implements ActionListener, KeyList
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
 					FrmConsultaAlumno frame = new FrmConsultaAlumno();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -146,6 +152,26 @@ public class FrmConsultaAlumno extends JFrame implements ActionListener, KeyList
 				"C\u00F3digo", "Nombre", "DNI", "Correo", "Fecha Nacimiento"
 			}
 		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(30);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(2).setPreferredWidth(50);
+		table.getColumnModel().getColumn(3).setPreferredWidth(100);
+		table.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.setRowSelectionAllowed(false);
+		table.setDefaultEditor(Object.class, null);
+		
+		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+		rightRenderer.setHorizontalAlignment(JLabel.CENTER);
+		
+		table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+		table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+		table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+		
+		UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+		defaults.putIfAbsent("Table.alternateRowColor", new Color(176, 245, 215));
+		
 		scrollPane.setViewportView(table);
 
 	}

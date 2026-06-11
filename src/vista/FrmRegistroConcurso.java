@@ -95,7 +95,6 @@ public class FrmRegistroConcurso extends JFrame implements ActionListener {
 
     private void registrarConcurso() {
 
-        try {
 
             // 1. Capturar datos
             String nombre = txtNombre.getText();
@@ -135,8 +134,6 @@ public class FrmRegistroConcurso extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Error al registrar concurso");
             }
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error en los datos: " + ex.getMessage());
-        }
+     
     }
 }

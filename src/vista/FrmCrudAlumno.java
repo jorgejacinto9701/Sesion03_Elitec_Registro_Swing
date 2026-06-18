@@ -57,6 +57,7 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
 					FrmCrudAlumno frame = new FrmCrudAlumno();
 					frame.setVisible(true);
 				} catch (Exception e) {

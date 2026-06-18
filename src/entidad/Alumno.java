@@ -14,5 +14,5 @@ public class Alumno {
 	private String dni;
 	private String correo;
 	private LocalDate fechaNacimiento;
-
+	private int estado;
 }

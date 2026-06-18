@@ -149,8 +149,12 @@ public class FrmRegistraCliente extends JFrame implements ActionListener, KeyLis
 		
 		//4 Llamar a ClienteModel para registrar el cliente
 	
-		int resultado = model.insertaCliente(cliente);
-
+		//Con SQL
+		//int resultado = model.insertaCliente(cliente);
+		
+		//Con Stored Procedure
+		int resultado = model.insertaClienteConStoredProcedure(cliente);
+		
         // 4. Mensaje
         if (resultado > 0) {
             JOptionPane.showMessageDialog(this, "Cliente registrado correctamente");

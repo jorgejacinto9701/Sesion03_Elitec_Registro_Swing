@@ -41,8 +41,6 @@ public class ClienteModel {
 				e2.printStackTrace();
 			}
 		}
-        
-        
         return salida;
 	}
 	
@@ -82,4 +80,46 @@ public class ClienteModel {
 		}
         return existe;
 	}
+	
+	public int insertaClienteConStoredProcedure(Cliente obj) {
+        int salida = -1;
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		try {
+			//1 Crear conexion
+			conn = MySqlDBConexion.getConexion();
+			
+			//2 Crear sentencia SQL
+			String sql = "call sp_inserta_cliente(?,?,?,?,?)";
+			pstm = conn.prepareCall(sql);
+			pstm.setString(1, obj.getNombre());
+			pstm.setString(2, obj.getDni());
+			pstm.setTimestamp(3, java.sql.Timestamp.valueOf(obj.getFechaRegistro()));
+			pstm.setInt(4, obj.getEstado());
+			pstm.setInt(5, obj.getCategoria().getIdCategoria());
+			
+			System.out.println("SQL ==> " + pstm);
+			
+			//3 Ejecutar sentencia SQL
+			salida = pstm.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null)
+					pstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+        return salida;
+	}
+	
+	
 }
+
+
+

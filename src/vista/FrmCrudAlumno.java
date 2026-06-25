@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -57,6 +58,7 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
 					FrmCrudAlumno frame = new FrmCrudAlumno();
 					frame.setVisible(true);
@@ -114,47 +116,52 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		txtNombre.setBounds(163, 150, 222, 20);
 		contentPane.add(txtNombre);
 
-		btnListar = new JButton("Listar Todos");
-		btnListar.addActionListener(this);
-		btnListar.setBounds(433, 93, 132, 23);
-		contentPane.add(btnListar);
-
 		JLabel lblMantenimientoAlumno = new JLabel("Mantenimiento Alumno");
 		lblMantenimientoAlumno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMantenimientoAlumno.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblMantenimientoAlumno.setBounds(31, 26, 1219, 34);
 		contentPane.add(lblMantenimientoAlumno);
 
-		btnBuscar = new JButton("Buscar");
+		btnListar = new JButton("Listar Todos");
+		btnListar.addActionListener(this);
+		btnListar.setBounds(433, 93, 160, 30);
+		contentPane.add(btnListar);
+
+		btnBuscar = new JButton("Busca");
+		btnBuscar.setIcon(new ImageIcon("icons/004-buscar.png"));
 		btnBuscar.addActionListener(this);
-		btnBuscar.setBounds(433, 127, 132, 23);
+		btnBuscar.setBounds(433, 125, 160, 30);
 		contentPane.add(btnBuscar);
 
 		btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setIcon(new ImageIcon("icons/001-agregar.png"));
 		btnRegistrar.addActionListener(this);
-		btnRegistrar.setBounds(433, 161, 132, 23);
+		btnRegistrar.setBounds(433, 157, 160, 30);
 		contentPane.add(btnRegistrar);
 
 		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setIcon(new ImageIcon("icons/editar.png"));
 		btnActualizar.addActionListener(this);
-		btnActualizar.setBounds(433, 200, 132, 23);
+		btnActualizar.setBounds(433, 189, 160, 30);
 		contentPane.add(btnActualizar);
 
 		btnEliminarLogico = new JButton("Eliminar lógico");
+		btnEliminarLogico.setIcon(new ImageIcon("icons/eliminar.png"));
 		btnEliminarLogico.addActionListener(this);
-		btnEliminarLogico.setBounds(433, 234, 132, 23);
+		btnEliminarLogico.setBounds(433, 221, 160, 30);
 		contentPane.add(btnEliminarLogico);
 
 		btnEliminarFisico = new JButton("Eliminar físico");
+		btnEliminarFisico.setIcon(new ImageIcon("icons/remove.gif"));
 		btnEliminarFisico.addActionListener(this);
-		btnEliminarFisico.setBounds(433, 268, 132, 23);
+		btnEliminarFisico.setBounds(433, 253, 160, 30);
 		contentPane.add(btnEliminarFisico);
 
 		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setIcon(new ImageIcon("icons/005-limpiar.png"));
 		btnLimpiar.addActionListener(this);
-		btnLimpiar.setBounds(433, 302, 132, 23);
+		btnLimpiar.setBounds(433, 285, 160, 30);
 		contentPane.add(btnLimpiar);
-
 		JLabel lblCodigo = new JLabel("Código");
 		lblCodigo.setBounds(31, 118, 101, 14);
 		contentPane.add(lblCodigo);
@@ -201,8 +208,11 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		contentPane.add(chkEstado);
 		
 		brnReporte = new JButton("Reporte");
+		brnReporte.setIcon(new ImageIcon("icons/005-reporte-de-negocios.png"));
 		brnReporte.addActionListener(this);
-		brnReporte.setBounds(1133, 385, 153, 23);
+		brnReporte.setFocusPainted(false);
+		brnReporte.setIconTextGap(8);
+		brnReporte.setBounds(1133, 385, 153, 30);
 		contentPane.add(brnReporte);
 
 		listarTodos();

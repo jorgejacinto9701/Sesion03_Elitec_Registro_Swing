@@ -2,34 +2,33 @@ package vista;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.JButton;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import entidad.Alumno;
 import model.AlumnoModel;
 import util.ValidateUtil;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
-import java.util.List;
-import java.awt.event.MouseEvent;
-import javax.swing.JCheckBox;
 
 public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListener {
 
@@ -49,6 +48,7 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 	private JButton btnEliminarFisico;
 	private JButton btnLimpiar;
 	private JCheckBox chkEstado;
+	private JButton brnReporte;
 
 	/**
 	 * Launch the application.
@@ -199,10 +199,18 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		chkEstado = new JCheckBox("Activo");
 		chkEstado.setBounds(159, 317, 97, 23);
 		contentPane.add(chkEstado);
+		
+		brnReporte = new JButton("Reporte");
+		brnReporte.addActionListener(this);
+		brnReporte.setBounds(1133, 385, 153, 23);
+		contentPane.add(brnReporte);
 
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == brnReporte) {
+			do_brnReporte_actionPerformed(e);
+		}
 		if (e.getSource() == btnLimpiar) {
 			do_btnLimpiar_actionPerformed(e);
 		}
@@ -490,5 +498,11 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		txtDNI.setText("");
 		txtEmail.setText("");
 		txtFechaNacimiento.setText("");
+	}
+	protected void do_brnReporte_actionPerformed(ActionEvent e) {
+		FrmDialogReporteAlumno dialog = new FrmDialogReporteAlumno(this, true);
+		dialog.setLocationRelativeTo(this);
+		dialog.setVisible(true);
+		dialog.setModal(true);
 	}
 }

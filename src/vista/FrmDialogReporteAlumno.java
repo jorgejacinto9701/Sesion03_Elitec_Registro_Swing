@@ -40,9 +40,8 @@ public class FrmDialogReporteAlumno extends JDialog implements ActionListener {
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
-		cancelButton = new JButton("Cancel");
+		cancelButton = new JButton("Cerrar");
 		cancelButton.addActionListener(this);
-		cancelButton.setActionCommand("Cancel");
 		buttonPane.add(cancelButton);
 		
 		

@@ -205,6 +205,7 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		brnReporte.setBounds(1133, 385, 153, 23);
 		contentPane.add(brnReporte);
 
+		listarTodos();
 	}
 
 	public void actionPerformed(ActionEvent e) {

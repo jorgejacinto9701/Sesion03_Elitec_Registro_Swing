@@ -21,7 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FrnRegistraAlumno extends JFrame implements ActionListener {
+public class FrmRegistraAlumno extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -43,7 +43,7 @@ public class FrnRegistraAlumno extends JFrame implements ActionListener {
 					//UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
 					//UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 					
-					FrnRegistraAlumno frame = new FrnRegistraAlumno();
+					FrmRegistraAlumno frame = new FrmRegistraAlumno();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class FrnRegistraAlumno extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public FrnRegistraAlumno() {
+	public FrmRegistraAlumno() {
 		setTitle("Jorge Jacinto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 698, 458);

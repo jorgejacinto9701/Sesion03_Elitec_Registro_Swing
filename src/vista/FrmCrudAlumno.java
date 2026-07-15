@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entidad.Alumno;
 import model.AlumnoModel;
+import util.Exportador;
 import util.ValidateUtil;
 
 public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListener {
@@ -50,6 +51,10 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 	private JButton btnLimpiar;
 	private JCheckBox chkEstado;
 	private JButton brnReporte;
+	private JButton btnPDF;
+	private JButton btnJSON;
+	private JButton btnXML;
+	private JButton btnExcel;
 
 	/**
 	 * Launch the application.
@@ -215,6 +220,26 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		brnReporte.setBounds(1133, 385, 153, 30);
 		contentPane.add(brnReporte);
 
+		btnPDF = new JButton("PDF");
+		btnPDF.addActionListener(this);
+		btnPDF.setBounds(606, 385, 120, 30);
+		contentPane.add(btnPDF);
+
+		btnJSON = new JButton("JSON");
+		btnJSON.addActionListener(this);
+		btnJSON.setBounds(736, 385, 120, 30);
+		contentPane.add(btnJSON);
+
+		btnXML = new JButton("XML");
+		btnXML.addActionListener(this);
+		btnXML.setBounds(866, 385, 120, 30);
+		contentPane.add(btnXML);
+
+		btnExcel = new JButton("Excel");
+		btnExcel.addActionListener(this);
+		btnExcel.setBounds(996, 385, 120, 30);
+		contentPane.add(btnExcel);
+		
 		listarTodos();
 	}
 
@@ -242,6 +267,18 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		}
 		if (e.getSource() == btnListar) {
 			do_btnListar_actionPerformed(e);
+		}
+		if (e.getSource() == btnPDF) {
+			exportarPDF(); 
+		}
+		if (e.getSource() == btnJSON) {
+		    exportarJSON();
+		}
+		if (e.getSource() == btnXML) {
+		    exportarXML();
+		}
+		if (e.getSource() == btnExcel) {
+		    exportarExcel();
 		}
 	}
 
@@ -516,4 +553,51 @@ public class FrmCrudAlumno extends JFrame implements ActionListener, MouseListen
 		dialog.setVisible(true);
 		dialog.setModal(true);
 	}
+	void exportarPDF() {
+
+	    AlumnoModel model = new AlumnoModel();
+	    List<Alumno> lista = model.listaTodos();
+
+	    Exportador exportador = new Exportador();
+	    exportador.exportarPDF(lista);
+
+	    JOptionPane.showMessageDialog(this, "JSON generado correctamente");
+	}
+	
+	
+	void exportarJSON() {
+
+	    AlumnoModel model = new AlumnoModel();
+	    List<Alumno> lista = model.listaTodos();
+
+	    Exportador exportador = new Exportador();
+	    exportador.exportarJSON(lista);
+
+	    JOptionPane.showMessageDialog(this, "JSON generado correctamente");
+	}
+
+
+	void exportarXML() {
+
+	    AlumnoModel model = new AlumnoModel();
+	    List<Alumno> lista = model.listaTodos();
+
+	    Exportador exportador = new Exportador();
+	    exportador.exportarXML(lista);
+
+	    JOptionPane.showMessageDialog(this, "XML generado correctamente");
+	}
+
+
+	void exportarExcel() {
+
+	    AlumnoModel model = new AlumnoModel();
+	    List<Alumno> lista = model.listaTodos();
+
+	    Exportador exportador = new Exportador();
+	    exportador.exportarExcel(lista);
+
+	    JOptionPane.showMessageDialog(this, "Excel generado correctamente");
+	}
+
 }
